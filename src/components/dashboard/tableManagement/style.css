@@ -1,0 +1,157 @@
+.action-btn {
+  position: absolute;
+  width: auto;
+  height: fit-content;
+  min-width: auto;
+  padding: 1px;
+  border-radius: 0;
+  top: 0;
+  right: 0;
+  /* margin-right: -2px;
+  margin-top: -2px; */
+}
+
+.del-btn {
+  top: 0;
+  right: 0;
+}
+
+.edit-btn {
+  top: 0;
+  right: 18px;
+}
+
+.dropzone-sec {
+  width: 100%;
+  height: calc(100vh - 182px);
+  overflow: auto;
+  position: relative;
+}
+
+
+#outer-dropzone {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  transition: transform 0.5s ease;
+  transform-origin: left top;
+}
+
+.dropzone {
+  background-color: #bfe4ff;
+  border: dashed 2px transparent;
+  border-radius: 4px;
+  width: auto;
+  transition: background-color 0.3s;
+  position: absolute;
+  color: #fff;
+}
+
+.drop-active {
+  border-color: #aaa;
+}
+
+.drop-target {
+  background-color: rgb(128, 128, 128) !important;
+  border-color: #fff;
+  border-style: solid;
+}
+
+.table {
+  color: #fff;
+  display: inline-block;
+  padding: 2px;
+  background-color: rgb(128, 128, 128);
+  border: solid 2px #fff;
+  touch-action: none;
+  transform: translate(0px, 0px);
+  transition: background-color 0.3s;
+  position: absolute;
+  z-index: 2;
+  /* overflow: hidden; */
+  line-height: 1.1;
+  border-radius: 5px;
+}
+
+.table.can-drop {
+  background-color: #4e4;
+}
+
+.save-mode {
+  pointer-events: none;
+}
+
+.save-mode .action-btn {
+  pointer-events: all;
+}
+
+.dropzone-container {
+  position: relative;
+}
+
+.dropzone-container .zoombtns {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: grid;
+}
+
+
+.table .table-chair-container {
+  width: calc(100% + 5px);
+  height: calc(100% + 5px);
+  background: transparent;
+  position: absolute;
+  margin: -5px;
+}
+
+
+.table .chair {
+  width: 20px;
+  height: 8px;
+  display: block;
+  background-color: #44ee4478;
+  position: absolute;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.table .chair::after {
+  display: block;
+  width: 10px;
+  height: 5px;
+  background-color: #0202024a;
+  content: "";
+  bottom: 0;
+  position: absolute;
+  left: 50%;
+  border-radius: 100%;
+  transform: translate(-50%, 50%);
+}
+
+.table .chair-1 {
+  left: 10px;
+  top: -10px;
+}
+
+
+.table .chair-2 {
+  right: 10px;
+  top: -10px;
+}
+
+
+
+.table .chair-3 {
+  transform: rotate(180deg);
+  bottom: -10px;
+  left: 10px;
+}
+
+
+
+.table .chair-4 {
+  transform: rotate(180deg);
+  bottom: -10px;
+  right: 10px;
+}

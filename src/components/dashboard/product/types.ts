@@ -1,0 +1,33 @@
+export type ProductListingType = {
+  id: number;
+  gm_id?: number;
+  branch_id: number;
+  menu_categories_id?: number;
+  name: string;
+  img: string;
+  status: 'true' | 'false';
+  type: 'toping' | 'dish';
+  is_customise?: 'true' | 'false';
+  is_size?: 'true' | 'false';
+  is_combo?: 'true' | 'false';
+  tax?: string;
+  alagic_ids?: string;
+  additive_ids?: string;
+  pickup?: number;
+  delivery?: number;
+  dine_in?: number;
+  points_per_dish?: number;
+  dish_number?: string;
+  description?: string;
+  cross_selling_products?: string;
+  is_cross_selling_products?: 'true' | 'false';
+  topingScenarios?: [];
+  menu_categories_ids?: string;
+  position?: number;
+};
+export type ExtraHeadersType = {
+  title: string;
+  align?: string;
+  sortable?: boolean;
+  key: string;
+};

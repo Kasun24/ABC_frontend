@@ -106,17 +106,17 @@ const dashboardRoutes = [
     },
   },
   {
-    path: "/system/roles",
+    path: "/roles",
     component: () => import("@/views/dashboard/Roles.vue"),
     meta: { title: "Roles", authRequired: true, layout: DefaultLayout },
   },
   {
-    path: "/system/users",
+    path: "/users",
     component: () => import("@/views/dashboard/Users.vue"),
     meta: { title: "Users", authRequired: true, layout: DefaultLayout },
   },
   {
-    path: "/system/branches",
+    path: "/branches",
     component: () => import("@/views/dashboard/Branches.vue"),
     meta: {
       title: "Branches",
@@ -125,17 +125,17 @@ const dashboardRoutes = [
     },
   },
   {
-    path: "/system/printers",
-    component: () => import("@/views/dashboard/Printers.vue"),
+    path: "/queries",   
+    component: () => import("@/views/dashboard/Query.vue"),
     meta: {
-      title: "Printers",
+      title: "Queries",
       authRequired: true,
       layout: DefaultLayout,
     },
   },
 
   {
-    path: "/system/tax",
+    path: "/tax",
     component: () => import("@/views/dashboard/Tax.vue"),
     meta: {
       title: "Tax",
@@ -144,7 +144,7 @@ const dashboardRoutes = [
     },
   },
   {
-    path: "/system/client-logs",
+    path: "/client-logs",
     component: () => import("@/views/dashboard/ClientLogs.vue"),
     meta: {
       title: "Logs",

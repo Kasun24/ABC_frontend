@@ -34,7 +34,7 @@ const menuItems1: MenuItemType[] = [
     label: "branches",
     id: "sideBarBranches",
     icon: "ph-share-network",
-    link: "/system/branches",
+    link: "/branches",
   },
   {
     label: "product-management",
@@ -75,13 +75,19 @@ const menuItems1: MenuItemType[] = [
     link: "/customer",
   },
   {
+    label: "queries",
+    id: "sideBarPos",
+    icon: "ph-question",
+    link: "/queries",
+  },
+  {
     label: "user-management",
     icon: "ph-users",
     id: "sideBarUserRoles",
     prefix: "/system",
     subMenu: [
-      { label: "roles", link: "/system/roles" },
-      { label: "users", link: "/system/users" },
+      { label: "roles", link: "/roles" },
+      { label: "users", link: "/users" },
     ],
   },
 
@@ -90,7 +96,7 @@ const menuItems1: MenuItemType[] = [
     id: "sideBarLogs",
     icon: "ph-files",
     prefix: "/logs",
-    subMenu: [{ label: "client-logs", link: "/system/client-logs" }],
+    subMenu: [{ label: "client-logs", link: "/client-logs" }],
   },
 ];
 

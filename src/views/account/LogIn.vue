@@ -7,12 +7,6 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
-import {
-  cashierDevice,
-  fetchRoles,
-  fetchRolesDashboard,
-  setGeneralSettings,
-} from "@/app/common/commonFunctions";
 
 const { t } = useI18n();
 const http = new HttpService();
@@ -72,7 +66,6 @@ const onLogIn = async () => {
         localStorage.setItem("user_name", user);
         localStorage.setItem("user_id", userId);
         localStorage.setItem("selectedBranchID", branch_id);
-        cashierDevice();
 
         if (isRemember.value) {
           localStorage.setItem("loginDetails", JSON.stringify(payload));
@@ -83,7 +76,6 @@ const onLogIn = async () => {
         if (status === 1) {
           const roleResponse = await http.get(`role/${roleId}`);
           if (roleResponse.data.data.status === 1) {
-            await fetchRoles();
             router.push({ path: "/" });
           } else {
             errorMsg.value = t("t-role_inactive");
@@ -98,7 +90,6 @@ const onLogIn = async () => {
       errorMsg.value = error.response.data.message;
     } finally {
       loading.value = false;
-      setGeneralSettings();
     }
   }
 };

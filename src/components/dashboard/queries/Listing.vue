@@ -3,9 +3,9 @@ import { ref, watch, computed, onMounted } from "vue";
 import Table from "@/app/common/components/Table.vue";
 import TableAction from "@/app/common/components/TableAction.vue";
 import RemoveItemConfirmationDialog from "@/app/common/components/RemoveItemConfirmationDialog.vue";
-import { printerHeaders } from "@/components/dashboard/printers/utils";
-import { PrinterListingType } from "@/components/dashboard/printers/types";
-import CreateEditPrinter from "@/components/dashboard/printers/CreateEditPrinter.vue";
+import { queryHeaders } from "@/components/dashboard/queries/utils";
+import { QueryListingType } from "@/components/dashboard/queries/types";
+import CreateEditQuery from "@/components/dashboard/queries/CreateEditQuery.vue";
 import Swal from "sweetalert2";
 import HttpService from "@/app/http/httpService";
 import { useI18n } from "vue-i18n";
@@ -19,7 +19,7 @@ const { t } = useI18n();
 const http = new HttpService();
 const loading = ref(false);
 const dialog = ref(false);
-const printerData = ref<PrinterListingType | null>(null);
+const queryData = ref<QueryListingType | null>(null);
 const deleteDialog = ref(false);
 const deletedId = ref<number | null>(null);
 const alertMsg = ref();
@@ -36,7 +36,7 @@ const unAuthorized = ref(false);
 const fetchData = async (page = 1) => {
   loading.value = true;
   try {
-    const response = await http.get(`printer/list?page=${page}`);
+    const response = await http.get(`query/list?page=${page}`);
     mappedData.value = response.data.data.data;
     totalItems.value = response.data.data.total;
     currentPage.value = response.data.data.current_page;
@@ -54,7 +54,7 @@ const fetchData = async (page = 1) => {
 // Computed properties
 const filteredData = computed(() => {
   const val = query.value.toLowerCase();
-  return mappedData.value.filter((item: PrinterListingType) =>
+  return mappedData.value.filter((item: QueryListingType) =>
     item.name.toLowerCase().includes(val)
   );
 });
@@ -71,21 +71,21 @@ const config = ref({
 watch(page, () => fetchData(page.value));
 watch(query, updatePagination);
 watch(dialog, (newVal) => {
-  if (!newVal) printerData.value = null;
+  if (!newVal) queryData.value = null;
 });
 watch(deleteDialog, (newVal) => {
   if (!newVal) deletedId.value = null;
 });
 
-// Function to create or edit a printer
-const onCreateEditClick = (data: PrinterListingType | null) => {
+// Function to create or edit a query
+const onCreateEditClick = (data: QueryListingType | null) => {
   if (!data) {
-    printerData.value = {
+    queryData.value = {
       id: -1,
       name: "",
     };
   } else {
-    printerData.value = data;
+    queryData.value = data;
   }
   dialog.value = true;
 };
@@ -104,9 +104,9 @@ function updatePagination() {
   };
 }
 
-// Function to create or update a printer
-async function onCreateUpdate(data: PrinterListingType) {
-  const endpoint = data.id === -1 ? "printer/create" : `printer/update`;
+// Function to create or update a query
+async function onCreateUpdate(data: QueryListingType) {
+  const endpoint = data.id === -1 ? "query/create" : `query/update`;
   try {
     const response = await http.post(endpoint, data);
     alertMsg.value = response.data;
@@ -121,7 +121,7 @@ async function onCreateUpdate(data: PrinterListingType) {
   dialog.value = false;
 }
 
-// Function to delete a printer
+// Function to delete a query
 const onDelete = async (id: number) => {
   deletedId.value = id;
   deleteDialog.value = true;
@@ -130,7 +130,7 @@ const onDelete = async (id: number) => {
 // Confirm deletion of user
 async function onConfirm() {
   try {
-    const response = await http.post("printer/delete", { id: deletedId.value });
+    const response = await http.post("query/delete", { id: deletedId.value });
     alertMsg.value = response.data;
     const icon = alertMsg.value.status ? "success" : "error";
     const title = alertMsg.value.status ? t("t-success") : t("t-error");
@@ -162,7 +162,7 @@ onMounted(async () => {
 <template>
   <PageLoad v-if="pageLoading" />
   <Unauthorized v-else-if="unAuthorized || !userPermissions.includes(32)" />
-  <Card v-else :title="`${$t('t-printers')} ${$t('t-list')}`">
+  <Card v-else :title="`${$t('t-queries')} ${$t('t-list')}`">
     <template #title-action>
       <div v-if="userPermissions.includes(33)">
         <v-btn color="primary" @click="onCreateEditClick(null)">
@@ -176,12 +176,12 @@ onMounted(async () => {
         is-pagination
         :config="config"
         :loading="loading"
-        :headerItems="printerHeaders"
+        :headerItems="queryHeaders"
       >
         <template #body>
           <tr
             v-for="(item, index) in filteredData"
-            :key="'printer-list-item-' + index"
+            :key="'query-list-item-' + index"
             height="50"
           >
             <td>
@@ -201,9 +201,9 @@ onMounted(async () => {
       <NoResult v-if="!filteredData.length" />
     </v-card-text>
   </Card>
-  <CreateEditPrinter
-    v-if="printerData"
-    :data="printerData"
+  <CreateEditQuery
+    v-if="queryData"
+    :data="queryData"
     v-model="dialog"
     @onCreateUpdate="onCreateUpdate"
   />

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed, defineProps, defineEmits, PropType } from "vue";
-import { PrinterListingType } from "@/components/dashboard/printers/types";
+import { QueryListingType } from "@/components/dashboard/queries/types";
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength } from "@vuelidate/validators";
 
@@ -12,13 +12,13 @@ const props = defineProps({
     default: false,
   },
   data: {
-    type: Object as PropType<PrinterListingType>,
+    type: Object as PropType<QueryListingType>,
     required: true,
   },
 });
 
 const isCreate = computed(() => props.data.id === -1);
-const formData = ref<PrinterListingType>(props.data);
+const formData = ref<QueryListingType>(props.data);
 const name = ref(formData.value.name || "");
 const dialogValue = computed({
   get() {
@@ -63,8 +63,8 @@ const onSave = () => {
     <Card
       :title="
         isCreate
-          ? `${$t('t-add')} ${$t('t-printer')}`
-          : `${$t('t-edit')} ${$t('t-printer')}`
+          ? `${$t('t-add')} ${$t('t-query')}`
+          : `${$t('t-edit')} ${$t('t-query')}`
       "
       title-class="py-0"
       style="overflow: hidden"
@@ -75,7 +75,7 @@ const onSave = () => {
       <v-divider />
       <v-card-text data-simplebar style="max-height: calc(100vh - 500px)">
         <div class="font-weight-bold mb-1">
-          {{ $t("t-printer-name") }} <i class="ph-asterisk ph-xs text-danger" />
+          {{ $t("t-query-name") }} <i class="ph-asterisk ph-xs text-danger" />
         </div>
         <v-text-field
           v-model="name"
@@ -83,7 +83,7 @@ const onSave = () => {
           variant="solo"
           density="compact"
           class="text-field-component"
-          :placeholder="`${$t('t-enter-printer-name')}`"
+          :placeholder="`${$t('t-enter-query-name')}`"
           :class="{
             'is-invalid': v$.name.$errors.length,
           }"

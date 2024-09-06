@@ -102,7 +102,7 @@ onMounted(async () => {
         <div class="d-flex justify-space-between">
           <div>
             <i class="mdi mdi-cog-outline text-muted" />
-            <span class="align-middle">{{ $t("t-system-settings") }}</span>
+            <span class="align-middle">{{ $t("t-dashboard") }}</span>
           </div>
         </div>
       </v-list-item>

@@ -1,22 +1,22 @@
 import { BreadcrumbType } from "@/app/common/types/breadcrumb.type";
 import { TableHeaderType } from "@/app/common/types/table.types";
 
-import { PrinterListingType } from "@/components/dashboard/printers/types";
+import { QueryListingType } from "@/components/dashboard/queries/types";
 
 export const breadcrumb: BreadcrumbType[] = [
   {
-    title: "system-settings",
+    title: "dashboard",
     disabled: false,
   },
   {
-    title: "printers",
+    title: "queries",
     disabled: true,
   },
 ];
 
-export const printerHeaders: TableHeaderType[] = [
+export const queryHeaders: TableHeaderType[] = [
   {
-    title: "Printer",
+    title: "Query",
   },
   {
     title: "Action",
@@ -24,9 +24,9 @@ export const printerHeaders: TableHeaderType[] = [
   },
 ];
 
-export const printerList: PrinterListingType[] = [
+export const queryList: QueryListingType[] = [
   {
     id: 1,
-    name: "Printer 1",
+    name: "Query 1",
   },
 ];

@@ -195,8 +195,6 @@
   "t-roles": "Roles",
   "t-role": "Role",
   "t-branches": "Branches",
-  "t-printers": "Printers",
-  "t-system-settings": "System Settings",
   "t-back-to-dashboard": "Back to Dashboard",
   "t-settings": "Settings",
   "t-product-categories": "Product Categories",
@@ -226,7 +224,6 @@
   "t-cart": "Cart",
   "t-prices": "Prices",
   "t-branch": "Branch",
-  "t-printer": "Printer",
   "t-element": "Element",
   "t-user": "User",
   "t-currency": "Currency",
@@ -341,8 +338,6 @@
   "t-new-values": "New Values",
   "t-no-document-data": "No document data available",
   "t-open-file": "Open File",
-  "t-printer-name": "Printer Name",
-  "t-enter-printer-name": "Enter printer name",
   "t-enter-category-name": "Enter category name",
   "t-search-category": "Search category",
   "t-role-permissions": "Role Permissions",
@@ -422,5 +417,7 @@
   "t-order": "Order",
   "t-yes": "Yes",
   "t-no": "No",
-  "t-do-you-really-want-to-delete-your-own-account": "Do you really want to delete your own account?"
+  "t-do-you-really-want-to-delete-your-own-account": "Do you really want to delete your own account?",
+  "t-query": "Query",
+  "t-queries": "Queries"
 }

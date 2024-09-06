@@ -8,7 +8,7 @@ import {
 
 export const breadcrumb: BreadcrumbType[] = [
   {
-    title: "system-settings",
+    title: "dashboard",
     disabled: false,
   },
   {

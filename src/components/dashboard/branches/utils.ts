@@ -3,7 +3,7 @@ import { TableHeaderType } from "@/app/common/types/table.types";
 
 export const breadcrumb: BreadcrumbType[] = [
   {
-    title: "system-settings",
+    title: "dashboard",
     disabled: false,
   },
   {

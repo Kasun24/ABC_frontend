@@ -2,12 +2,7 @@
 import { logHeaders, logs } from "@/components/dashboard/logs/client/utils";
 
 import { ref, watch, computed, onMounted } from "vue";
-// import Table from "@/app/common/components/Table.vue";
-// import TableAction from "@/app/common/components/TableAction.vue";
-// import RemoveItemConfirmationDialog from "@/app/common/components/RemoveItemConfirmationDialog.vue";
-// import { printerHeaders } from "@/components/dashboard/printers/utils";
-// import { PrinterListingType } from "@/components/dashboard/printers/types";
-// import CreateEditPrinter from "@/components/dashboard/printers/CreateEditPrinter.vue";
+
 import Swal from "sweetalert2";
 import HttpService from "@/app/http/httpService";
 import { useI18n } from "vue-i18n";

@@ -4,7 +4,7 @@ import { TableHeaderType } from "@/app/common/types/table.types";
 
 export const breadcrumb: BreadcrumbType[] = [
   {
-    title: "system-settings",
+    title: "dashboard",
     disabled: false,
   },
   {
@@ -19,20 +19,20 @@ export const userHeaders: TableHeaderType[] = [
   { title: "Status" },
   { title: "Action", align: "end" },
 ];
-  
+
 export const statusOptions: MenuSelectItemType[] = [
   { value: 1, label: "Active" },
   { value: 0, label: "Inactive" },
 ];
 
 export const currencyOptions: MenuSelectItemType[] = [
-  { value: '€', label: "EURO" },
-  { value: '$', label: "USD" },
+  { value: "€", label: "EURO" },
+  { value: "$", label: "USD" },
 ];
 
 export const currencyPositions: MenuSelectItemType[] = [
-  { value: 'before', label: "Before" },
-  { value: 'after', label: "After" },
+  { value: "before", label: "Before" },
+  { value: "after", label: "After" },
 ];
 
 export const userLevels: MenuSelectItemType[] = [
@@ -40,7 +40,7 @@ export const userLevels: MenuSelectItemType[] = [
   { value: "waiter", label: "Waiter" },
   { value: "cashier", label: "Cashier" },
 ];
-export const branchNamesTest : MenuSelectItemType[] = [
+export const branchNamesTest: MenuSelectItemType[] = [
   { value: 1, label: "Test 1" },
   { value: 2, label: "Test 2" },
   { value: 3, label: "Test 3" },

@@ -112,27 +112,6 @@ const dialogValue = computed({
   },
 });
 
-const fetchDashboardData = async () => {
-  loading.value = true;
-  try {
-    const response = await http.get(`dashboard/list`);
-    const dashboardItems = response.data.data.data;
-    console.log("Dataaaa", dashboardItems);
-    // mappedData.value = data.data;
-    // totalItems.value = data.total;
-    // currentPage.value = data.current_page;
-    // itemsPerPage.value = data.per_page;
-    // componentModel.value = data.map((item: ItemListingType) => item.componentModel).flat();
-    dashboards.value = dashboardItems.map((item: any) => ({
-      value: item.id,
-      label: item.name,
-    }));
-    console.log("dashboards.valueeeee", dashboards.value);
-  } catch (error) {
-    console.error(error);
-  }
-  loading.value = false;
-};
 
 // Add validation rules
 const rules = {
@@ -218,7 +197,6 @@ const toggleParent = (groupKey: number, parentPermissions: Permission[]) => {
   }
 };
 
-onMounted(fetchDashboardData);
 </script>
 
 <template>

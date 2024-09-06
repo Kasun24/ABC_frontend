@@ -15,7 +15,7 @@ import { AssigneeImgType } from "@/components/dashboard/roles/types";
 
 export const breadcrumb: BreadcrumbType[] = [
   {
-    title: "system-settings",
+    title: "dashboard",
     disabled: false,
   },
   {

@@ -419,5 +419,7 @@
   "t-no": "No",
   "t-do-you-really-want-to-delete-your-own-account": "Do you really want to delete your own account?",
   "t-query": "Query",
-  "t-queries": "Queries"
+  "t-queries": "Queries",
+  "t-response": "Response",
+  "t-enter_response": "Enter response"
 }

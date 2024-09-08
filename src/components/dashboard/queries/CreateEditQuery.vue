@@ -19,7 +19,12 @@ const props = defineProps({
 
 const isCreate = computed(() => props.data.id === -1);
 const formData = ref<QueryListingType>(props.data);
-const name = ref(formData.value.name || "");
+const customer = ref(formData.value.customer_id || "");
+const subject = ref(formData.value.subject || "");
+const message = ref(formData.value.message || "");
+const status = ref(formData.value.status || "");
+const staffUser = ref(JSON.parse(localStorage.getItem("user_id") || "{}"));
+const response = ref(formData.value.response || "");
 const dialogValue = computed({
   get() {
     return props.modelValue;
@@ -31,11 +36,21 @@ const dialogValue = computed({
 
 // Add validation rules
 const rules = {
-  name: { required, maxLength: maxLength(50) },
+  customer: { required },
+  subject: { required, maxLength: maxLength(100) },
+  message: { maxLength: maxLength(255) },
+  status: { required, maxLength: maxLength(50) },
+  response: { maxLength: maxLength(200) },
 };
 
 // Define validation rules and apply them to the form data using Vuelidate
-const v$ = useVuelidate(rules, { name });
+const v$ = useVuelidate(rules, {
+  customer,
+  subject,
+  message,
+  status,
+  response,
+});
 
 const onSave = () => {
   // validate form
@@ -45,7 +60,12 @@ const onSave = () => {
     // save data
     const data = {
       ...props.data,
-      name: name.value,
+      customer_id: customer.value,
+      subject: subject.value,
+      message: message.value,
+      status: response.value ? "closed" : status.value,
+      response: response.value,
+      user_id: 1,
     };
 
     emit("onCreateUpdate", data);
@@ -56,7 +76,7 @@ const onSave = () => {
 <template>
   <v-dialog
     v-model="dialogValue"
-    max-width="500"
+    max-width="800"
     :scrollable="false"
     persistent
   >
@@ -74,25 +94,109 @@ const onSave = () => {
       </template>
       <v-divider />
       <v-card-text data-simplebar style="max-height: calc(100vh - 500px)">
-        <div class="font-weight-bold mb-1">
-          {{ $t("t-query-name") }} <i class="ph-asterisk ph-xs text-danger" />
-        </div>
-        <v-text-field
-          v-model="name"
-          hide-details
-          variant="solo"
-          density="compact"
-          class="text-field-component"
-          :placeholder="`${$t('t-enter-query-name')}`"
-          :class="{
-            'is-invalid': v$.name.$errors.length,
-          }"
-        />
-        <div v-if="v$.name.$invalid" class="invalid-feedback">
-          <span v-for="error in v$.name.$errors">
-            {{ error.$message }}
-          </span>
-        </div>
+        <v-row>
+          <v-col cols="12" lg="6"
+            ><div class="font-weight-bold mb-1">
+              {{ $t("t-customer") }}
+            </div>
+            <v-text-field
+              v-model="customer"
+              :disabled="!isCreate"
+              hide-details
+              variant="solo"
+              density="compact"
+              class="text-field-component"
+              :placeholder="`${$t('t-enter_customer_id')}`"
+              :class="{
+                'is-invalid': v$.customer.$errors.length,
+              }"
+            />
+            <div v-if="v$.customer.$errors" class="invalid-feedback">
+              <span v-for="error in v$.customer.$errors">
+                {{ error.$message }}
+              </span>
+            </div>
+          </v-col>
+          <v-col cols="12" lg="6">
+            <div class="font-weight-bold mb-1">
+              {{ $t("t-staff_user") }}
+            </div>
+            <v-text-field
+              v-model="staffUser"
+              :disabled="true"
+              hide-details
+              variant="solo"
+              density="compact"
+              class="text-field-component"
+            />
+          </v-col>
+          <v-col cols="12" lg="12"
+            ><div class="font-weight-bold mb-1">
+              {{ $t("t-subject") }}
+            </div>
+            <v-text-field
+              v-model="subject"
+              :disabled="!isCreate"
+              hide-details
+              variant="solo"
+              density="compact"
+              class="text-field-component"
+              :placeholder="`${$t('t-enter_subject')}`"
+              :class="{
+                'is-invalid': v$.subject.$errors.length,
+              }"
+            />
+            <div v-if="v$.subject.$errors" class="invalid-feedback">
+              <span v-for="error in v$.subject.$errors">
+                {{ error.$message }}
+              </span>
+            </div>
+          </v-col>
+          <v-col cols="12" lg="12">
+            <div class="font-weight-bold mb-1">
+              {{ $t("t-message") }}
+            </div>
+            <v-textarea
+              v-model="message"
+              :disabled="!isCreate"
+              hide-details
+              variant="solo"
+              density="compact"
+              class="text-field-component"
+              :placeholder="`${$t('t-enter_message')}`"
+              :class="{
+                'is-invalid': v$.message.$errors.length,
+              }"
+            />
+            <div v-if="v$.message.$errors" class="invalid-feedback">
+              <span v-for="error in v$.message.$errors">
+                {{ error.$message }}
+              </span>
+            </div>
+          </v-col>
+
+          <v-col cols="12" lg="12">
+            <div class="font-weight-bold mb-1">
+              {{ $t("t-response") }}
+            </div>
+            <v-textarea
+              v-model="response"
+              hide-details
+              variant="solo"
+              density="compact"
+              class="text-field-component"
+              :placeholder="`${$t('t-enter_response')}`"
+              :class="{
+                'is-invalid': v$.response.$errors.length,
+              }"
+            />
+            <div v-if="v$.response.$invalid" class="invalid-feedback">
+              <span v-for="error in v$.response.$errors">
+                {{ error.$message }}
+              </span>
+            </div>
+          </v-col>
+        </v-row>
       </v-card-text>
       <v-divider />
       <v-card-actions>

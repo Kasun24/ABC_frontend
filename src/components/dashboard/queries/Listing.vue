@@ -14,6 +14,7 @@ import { getPermissions } from "@/app/http/services/permissionService";
 import Unauthorized from "@/app/common/components/common/Unauthorized.vue";
 import PageLoad from "@/app/common/components/common/PageLoad.vue";
 import NoResult from "@/app/common/components/common/NoResult.vue";
+import Status from "@/app/common/components/Status.vue";
 
 const { t } = useI18n();
 const http = new HttpService();
@@ -41,7 +42,6 @@ const fetchData = async (page = 1) => {
     totalItems.value = response.data.data.total;
     currentPage.value = response.data.data.current_page;
     itemsPerPage.value = response.data.data.per_page;
-
     updatePagination();
   } catch (error: any) {
     if (error.response.status === 403) {
@@ -50,12 +50,11 @@ const fetchData = async (page = 1) => {
   }
   loading.value = false;
 };
-
 // Computed properties
 const filteredData = computed(() => {
   const val = query.value.toLowerCase();
   return mappedData.value.filter((item: QueryListingType) =>
-    item.name.toLowerCase().includes(val)
+    item.subject.toLowerCase().includes(val)
   );
 });
 
@@ -82,7 +81,12 @@ const onCreateEditClick = (data: QueryListingType | null) => {
   if (!data) {
     queryData.value = {
       id: -1,
-      name: "",
+      customer_id: "",
+      subject: "",
+      message: "",
+      status: "pending",
+      user_id: "",
+      response: "",
     };
   } else {
     queryData.value = data;
@@ -185,7 +189,16 @@ onMounted(async () => {
             height="50"
           >
             <td>
-              {{ item.name }}
+              {{ item.customer_id }}
+            </td>
+            <td>
+              {{ item.subject }}
+            </td>
+            <td>
+              {{ item.message }}
+            </td>
+            <td>
+              <Status :status="item.status" />
             </td>
             <td>
               <TableAction

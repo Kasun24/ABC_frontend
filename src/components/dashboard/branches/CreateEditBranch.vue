@@ -2,11 +2,9 @@
 import { ref, computed, defineProps, defineEmits, PropType } from "vue";
 import {
   BranchListingType,
-  ApiBranchListingType,
 } from "@/components/dashboard/branches/types";
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength } from "@vuelidate/validators";
-import MenuSelect from "@/app/common/components/filters/MenuSelect.vue";
 
 const emit = defineEmits(["update:modelValue", "onCreateUpdate"]);
 
@@ -19,10 +17,7 @@ const props = defineProps({
     type: Object as PropType<BranchListingType>,
     required: true,
   },
-  apiBranchData: {
-    type: Object as PropType<ApiBranchListingType[]>,
-    default: () => [],
-  },
+  
 });
 const isCreate = computed(() => props.data.id === -1);
 const formData = ref<BranchListingType>(props.data);
@@ -119,16 +114,7 @@ const onSave = () => {
             <span> Bill Split </span>
           </template>
         </v-switch>
-        <div v-if="apiBranchData">
-          <div class="font-weight-bold mb-1 mt-2">Branch</div>
-          <MenuSelect
-            v-model="gm_id"
-            :items="apiBranchData"
-            itemTitle="name"
-            itemValue="id"
-            placeholder="Select Branch"
-          />
-        </div>
+        
       </v-card-text>
 
       <v-divider />

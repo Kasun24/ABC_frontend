@@ -28,7 +28,6 @@ const deletedId = ref<number | null>(null);
 const alertMsg = ref();
 const query = ref("");
 const mappedData = ref<any>([]);
-const apiBranchData = ref<ApiBranchListingType[] | undefined>();
 const syncDialog = ref(false);
 const syncId = ref<number | null>(null);
 const totalItems = ref(0);
@@ -55,13 +54,7 @@ const fetchData = async (page = 1) => {
       unAuthorized.value = true;
     }
   }
-  // Get API branch info if available
-  try {
-    const response = await http.get("branches/get-api-branches");
-    apiBranchData.value = response.data.data;
-  } catch (error) {
-    console.log(error);
-  }
+
   loading.value = false;
 };
 
@@ -265,7 +258,6 @@ onMounted(async () => {
   <CreateEditBranch
     v-if="branchData"
     :data="branchData"
-    :apiBranchData="apiBranchData"
     v-model="dialog"
     @onCreateUpdate="onCreateUpdate"
   />

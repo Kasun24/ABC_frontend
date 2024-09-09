@@ -39,6 +39,7 @@ const fetchData = async (page = 1) => {
   try {
     const response = await http.get(`query/list?page=${page}`);
     mappedData.value = response.data.data.data;
+    console.log(mappedData.value, "aaa");
     totalItems.value = response.data.data.total;
     currentPage.value = response.data.data.current_page;
     itemsPerPage.value = response.data.data.per_page;
@@ -189,7 +190,7 @@ onMounted(async () => {
             height="50"
           >
             <td>
-              {{ item.customer_id }}
+              {{ item.customer_email }}
             </td>
             <td>
               {{ item.subject }}

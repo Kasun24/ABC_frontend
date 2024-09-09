@@ -25,6 +25,8 @@ const message = ref(formData.value.message || "");
 const status = ref(formData.value.status || "");
 const staffUser = ref(JSON.parse(localStorage.getItem("user_id") || "{}"));
 const response = ref(formData.value.response || "");
+const customerEmail = ref(formData.value.customer_email || "No customer name");
+const userName = ref(formData.value.user_name || "No user name");
 const dialogValue = computed({
   get() {
     return props.modelValue;
@@ -63,7 +65,7 @@ const onSave = () => {
       customer_id: customer.value,
       subject: subject.value,
       message: message.value,
-      status: response.value ? "closed" : status.value,
+      status: response.value ? "resolved" : status.value,
       response: response.value,
       user_id: 1,
     };
@@ -100,6 +102,7 @@ const onSave = () => {
               {{ $t("t-customer") }}
             </div>
             <v-text-field
+              v-show="isCreate"
               v-model="customer"
               :disabled="!isCreate"
               hide-details
@@ -110,6 +113,15 @@ const onSave = () => {
               :class="{
                 'is-invalid': v$.customer.$errors.length,
               }"
+            />
+            <v-text-field
+              v-show="!isCreate"
+              v-model="customerEmail"
+              :disabled="true"
+              hide-details
+              variant="solo"
+              density="compact"
+              class="text-field-component"
             />
             <div v-if="v$.customer.$errors" class="invalid-feedback">
               <span v-for="error in v$.customer.$errors">
@@ -122,7 +134,7 @@ const onSave = () => {
               {{ $t("t-staff_user") }}
             </div>
             <v-text-field
-              v-model="staffUser"
+              v-model="userName"
               :disabled="true"
               hide-details
               variant="solo"

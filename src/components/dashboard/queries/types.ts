@@ -6,4 +6,6 @@ export type QueryListingType = {
   status: string;
   user_id: number | string;
   response: string;
+  customer_email?: string;
+  user_name?: string;
 };

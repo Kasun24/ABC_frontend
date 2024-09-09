@@ -421,5 +421,17 @@
   "t-query": "Query",
   "t-queries": "Queries",
   "t-response": "Response",
-  "t-enter_response": "Enter response"
+  "t-enter_response": "Enter response",
+  "t-staff_user": "Staff user",
+  "t-subject": "Subject",
+  "t-message": "Message",
+  "t-query_add_successfully": "Query added successfully",
+  "t-query_add_failed": "Query add failed",
+  "t-query_updated_successfully": "Query updated successfully",
+  "t-query_update_failed": "Query update failed",
+  "t-query_delete_failed": "Query delete failed",
+  "t-query_delete_successfully": "Query deleted successfully",
+  "t-enter_customer_id": "Enter customer id",
+  "t-enter_subject": "Enter subject",
+  "t-enter_message": "Enter message"
 }
